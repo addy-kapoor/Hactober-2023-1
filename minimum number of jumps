@@ -1,0 +1,23 @@
+
+
+class Solution{
+    static int minJumps(int[] arr){
+        // your code here
+        int maxReach = 0, jumps = -1, prevMaxReach = 0;
+        for(int i = 0 ; i < arr.length ; i++)
+        {
+            if(maxReach < i)
+                return -1;
+            if(prevMaxReach == i)
+            {
+                if(i != arr.length-1)
+                    prevMaxReach = Math.max(maxReach, i+arr[i]);
+                jumps++;
+            }
+            maxReach = Math.max(maxReach, i+arr[i]);
+        }
+        if(prevMaxReach > arr.length-1)
+            jumps++;
+        return jumps;
+    }
+}
